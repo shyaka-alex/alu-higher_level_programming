@@ -1,27 +1,32 @@
 #!/usr/bin/python3
-"""Module that defines a Rectangle class with full features."""
+"""Module that defines a Rectangle class with all features including square."""
 
 
 class Rectangle:
-    """A class that defines a rectangle with full features."""
+    """A class that defines a rectangle with full OOP features."""
 
     number_of_instances = 0
     print_symbol = "#"
 
     def __init__(self, width=0, height=0):
-        """Initialize Rectangle and increment instance counter."""
+        """Initialize Rectangle and increment instance counter.
+
+        Args:
+            width (int): The width of the rectangle. Defaults to 0.
+            height (int): The height of the rectangle. Defaults to 0.
+        """
         self.width = width
         self.height = height
         Rectangle.number_of_instances += 1
 
     @property
     def width(self):
-        """Retrieve width."""
+        """Retrieve the width of the rectangle."""
         return self.__width
 
     @width.setter
     def width(self, value):
-        """Set width."""
+        """Set the width of the rectangle."""
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
         if value < 0:
@@ -30,12 +35,12 @@ class Rectangle:
 
     @property
     def height(self):
-        """Retrieve height."""
+        """Retrieve the height of the rectangle."""
         return self.__height
 
     @height.setter
     def height(self, value):
-        """Set height."""
+        """Set the height of the rectangle."""
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
         if value < 0:
@@ -57,15 +62,14 @@ class Rectangle:
         if self.__width == 0 or self.__height == 0:
             return ""
         sym = str(self.print_symbol)
-        return "
-".join(sym * self.__width for _ in range(self.__height))
+        return "\n".join(sym * self.__width for _ in range(self.__height))
 
     def __repr__(self):
-        """Return official string representation."""
+        """Return official string representation to recreate the instance."""
         return "Rectangle({}, {})".format(self.__width, self.__height)
 
     def __del__(self):
-        """Decrement counter and print message on deletion."""
+        """Decrement instance counter and print message on deletion."""
         Rectangle.number_of_instances -= 1
         print("Bye rectangle...")
 
@@ -82,5 +86,5 @@ class Rectangle:
 
     @classmethod
     def square(cls, size=0):
-        """Return a new Rectangle with equal width and height."""
+        """Return a new Rectangle with width == height == size."""
         return cls(size, size)
